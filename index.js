@@ -97,6 +97,10 @@ app.post('/admin/vagas/editar/:id', async (req, res) => {
 });
 
 /**
+ * Admin categorias
+ */
+
+/**
  * Cria as tabelas caso não existam
  */
 
