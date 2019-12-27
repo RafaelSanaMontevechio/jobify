@@ -100,6 +100,43 @@ app.post('/admin/vagas/editar/:id', async (req, res) => {
  * Admin categorias
  */
 
+app.get('/admin/categorias', async (req, res) => {
+  const db = await dbConection;
+  const categorias = await db.all('select * from categorias');
+  res.render('admin/categorias', { categorias });
+});
+
+app.get('/admin/categorias/nova', (req, res) => {
+  res.render('admin/nova-categoria');
+});
+
+app.post('/admin/categorias/nova', async (req, res) => {
+  const db = await dbConection;
+  const { categoria } = req.body;
+  await db.run(`insert into categorias(categoria) values ('${categoria}');`);
+  res.redirect('/admin/categorias');
+});
+
+app.get('/admin/categorias/editar/:id', async (req, res) => {
+  const db = await dbConection;
+  const categoria = await db.get('select * from categorias where id = ' + req.params.id);
+  res.render('admin/editar-categoria', { categoria });
+});
+
+app.post('/admin/categorias/editar/:id', async (req, res) => {
+  const { categoria } = req.body;
+  const db = await dbConection;
+  db.run(`update categorias set categoria = '${categoria}' where id = ` + req.params.id);
+  res.redirect('/admin/categorias');
+});
+
+app.get('/admin/categorias/delete/:id', async (req, res) => {
+  const db = await dbConection;
+  await db.run('delete from categorias where id = ' + req.params.id);
+  res.redirect('/admin/categorias');
+});
+
+
 /**
  * Cria as tabelas caso não existam
  */
