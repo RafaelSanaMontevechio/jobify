@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
 //conexão com o sqlite
 const sqlite = require('sqlite');
-const dbConection = sqlite.open('banco.sqlite', { Promise });
+const dbConection = sqlite.open(path.resolve(__dirname, 'banco.sqlite'), { Promise });
 
 const port = process.env.PORT || 3000;
 
