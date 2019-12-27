@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', async (request, response) => {
-  const db = await dbConection
+  const db = await dbConection;
   const categoriasDb = await db.all('select * from categorias');
   const vagas = await db.all('select * from vagas');
   const categorias = categoriasDb.map(cat => {
