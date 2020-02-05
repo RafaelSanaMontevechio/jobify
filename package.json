@@ -18,7 +18,6 @@
   "author": "Rafael Sana Montevechio",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.603.0",
     "body-parser": "^1.19.0",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
